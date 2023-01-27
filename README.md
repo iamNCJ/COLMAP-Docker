@@ -10,6 +10,14 @@ Python bindings ([pycolmap](https://github.com/colmap/pycolmap) & [pyceres](http
 docker run -it --rm -u $(id -u):$(id -g) --ipc="host" ghcr.io/iamncj/colmap_toolkit:latest bash
 ```
 
+## Use For VSCode Dev Container
+
+```bash
+cp -r example-devcontainer /PATH/TO/YOUR/WORKSPACE/.devcontainer
+```
+
+Then reopen your workspace in container.
+
 ## Build
 
 ```bash
