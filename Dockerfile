@@ -61,19 +61,22 @@ RUN apt-get install -y python3 python3-pip && \
 
 # Install pycolmap ahead
 ARG PYCOLMAP_COMMIT=391a1c2
-RUN pip3 install git+https://github.com/colmap/pycolmap@${PYCOLMAP_COMMIT}
+RUN git clone --recursive https://github.com/colmap/pycolmap/ && \
+    cd pycolmap && \
+    git checkout ${PYCOLMAP_COMMIT} && \
+    pip3 install -e .
 
 # Install HLOC
 # keep source code editable for convenience
 RUN git clone --recursive https://github.com/cvg/Hierarchical-Localization/ hloc && \
-    cd hloc/ && \
+    cd hloc && \
     pip3 install -e .
 
 # Install Pixel Perfect SfM
 RUN apt-get install -y libhdf5-dev && \
     git clone https://github.com/cvg/pixel-perfect-sfm --recursive && \
     cd pixel-perfect-sfm && \
-    sed -i 's/git+https:\/\/github.com\/colmap\/pycolmap/pycolmap>=0.4.0/g' CMakeLists.txt && \
+    sed -i 's/git+https:\/\/github.com\/colmap\/pycolmap/pycolmap>=0.4.0/g' requirements.txt && \
     pip3 install -r requirements.txt && \
     pip3 install -e .
 
