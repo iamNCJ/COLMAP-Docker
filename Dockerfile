@@ -41,15 +41,13 @@ RUN apt-get install -y libatlas-base-dev libsuitesparse-dev && \
     make install
 
 # Install Colmap
-# PATCH: add -fPIC when building colmap cuda library to link with pycolmap
-ARG COLMAP_COMMIT=87b3aa3
+ARG COLMAP_COMMIT=1f31e94
 RUN git clone https://github.com/colmap/colmap.git && \
     cd colmap && \
     git checkout ${COLMAP_COMMIT} && \
-    sed -i 's/add_definitions("-DCUDA_ENABLED")/add_definitions("-DCUDA_ENABLED")\n\n        # add -fPIC when building colmap cuda library to link with pycolmap\n        set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler -fPIC")/g' CMakeLists.txt && \
     mkdir build && \
     cd build && \
-    cmake .. && \
+    cmake .. -DCMAKE_CUDA_ARCHITECTURES=all-major && \
     make -j && \
     make install
 

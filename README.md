@@ -32,6 +32,6 @@ docker build . -t ghcr.io/iamncj/colmap_toolkit:latest
 - Python: 3.8.10
 - PyTorch: 1.13.1
 - Torchvision: 0.14.1
-- COLMAP: 3.8-dev@[87b3aa3](https://github.com/colmap/colmap/tree/87b3aa325bd8e5fb913788e29e9ac1e085e28b67)
+- COLMAP: 3.8-dev@[1f31e94](https://github.com/colmap/colmap/tree/1f31e94)
 - pycolmap: 0.4.0@[391a1c2](https://github.com/colmap/pycolmap/tree/391a1c28110fd6c61b4c6550e1e19bc4295398a5)
 - Ceres: 2.1.0
